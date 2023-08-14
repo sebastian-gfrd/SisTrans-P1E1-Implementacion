@@ -4,6 +4,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -19,12 +21,14 @@ public class Bebida {
 
     private Integer grado_alcohol;
 
-    private String tipo;
+    @ManyToOne
+    @JoinColumn(name = "tipo", referencedColumnName = "id")
+    private Tipo_bebida tipo;
 
     public Bebida()
     {;}
 
-    public Bebida(String nombre, Integer grado_alcohol, String tipo) {
+    public Bebida(String nombre, Integer grado_alcohol, Tipo_bebida tipo) {
         this.nombre = nombre;
         this.grado_alcohol = grado_alcohol;
         this.tipo = tipo;
@@ -42,7 +46,7 @@ public class Bebida {
         return grado_alcohol;
     }
 
-    public String getTipo() {
+    public Tipo_bebida getTipo() {
         return tipo;
     }
 
@@ -58,7 +62,7 @@ public class Bebida {
         this.grado_alcohol = grado_alcohol;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo_bebida tipo) {
         this.tipo = tipo;
     }
     
