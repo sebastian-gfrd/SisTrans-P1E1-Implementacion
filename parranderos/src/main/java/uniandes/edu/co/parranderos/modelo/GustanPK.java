@@ -6,7 +6,6 @@ import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 
-
 @Embeddable
 public class GustanPK implements Serializable {
 
@@ -17,6 +16,9 @@ public class GustanPK implements Serializable {
     @ManyToOne
     @JoinColumn(name = "id_bebida", referencedColumnName = "id")
     private Bebida id_bebida;
+
+    public GustanPK() {
+    }
 
     public GustanPK(Bebedor id_bebedor, Bebida id_bebida) {
         super();
