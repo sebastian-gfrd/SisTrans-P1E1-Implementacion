@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "e0b7167c-ddc4-49db-ab53-f41c7485825d",
+		"name": "Parranderos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "19767625",
+		"_collection_link": "https://solar-spaceship-244943.postman.co/workspace/aaa~ed20b85b-f663-45c4-851e-143e241a0f31/collection/19767625-e0b7167c-ddc4-49db-ab53-f41c7485825d?action=share&source=collection_link&creator=19767625"
+	},
+	"item": [
+		{
+			"name": "Bar",
+			"item": [
+				{
+					"name": "Create Bar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Test Bar\",\n    \"ciudad\": \"Test City\",\n    \"presupuesto\": \"Alto\",\n    \"cant_sedes\": 450\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/bares/new/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Read Bares",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/bares"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Bar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Updated Bar\",\n    \"ciudad\": \"Updated City\",\n    \"presupuesto\": \"Bajo\",\n    \"cant_sedes\": 3\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/bares/{{barId}}/edit/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Bar",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/bares/{{barId}}/delete"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
