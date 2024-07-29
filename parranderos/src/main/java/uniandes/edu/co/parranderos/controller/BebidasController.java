@@ -1,6 +1,8 @@
 package uniandes.edu.co.parranderos.controller;
 
 import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+
 import uniandes.edu.co.parranderos.modelo.Bebida;
 import uniandes.edu.co.parranderos.repositorio.BebidaRepository;
+import uniandes.edu.co.parranderos.repositorio.BebidaRepository.RespuestaInformacionBebidas;
 
 @RestController
 public class BebidasController {
@@ -24,6 +29,35 @@ public class BebidasController {
         try {
             Collection<Bebida> bebidas = bebidaRepository.darBebidas();
             return ResponseEntity.ok(bebidas);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+        }
+    }
+
+    @GetMapping("/bebidas/consulta")
+    public ResponseEntity<?> bebidasConsulta(@RequestParam(required = false) String ciudad,
+                                             @RequestParam(required = false) String minGrado,
+                                             @RequestParam(required = false) String maxGrado) {
+
+        try {
+            Collection<RespuestaInformacionBebidas> informacion = bebidaRepository.darInformacionBebidas();
+            RespuestaInformacionBebidas info = informacion.iterator().next();
+
+            Map<String, Object> response = new HashMap<>();
+            response.put("totalBebidas", info.getTOTAL_BEBIDAS());
+            response.put("promedioGrado", info.getPROMEDIO_GRADO());
+            response.put("mayorGrado", info.getMAYOR_GRADO());
+            response.put("menorGrado", info.getMENOR_GRADO());
+
+            Collection<Bebida> bebidas;
+            if ((ciudad == null || ciudad.isEmpty()) || (minGrado == null || minGrado.isEmpty()) || (maxGrado == null || maxGrado.isEmpty())) {
+                bebidas = bebidaRepository.darBebidas();
+            } else {
+                bebidas = bebidaRepository.darBebidasPorCiudadYGrado(ciudad, Integer.parseInt(minGrado), Integer.parseInt(maxGrado));
+            }
+            response.put("bebidas", bebidas);
+
+            return ResponseEntity.ok(response);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
         }
