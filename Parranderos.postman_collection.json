@@ -122,6 +122,564 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Bebedor",
+			"item": [
+				{
+					"name": "Crear Bebedor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Test Bebedor\",\n    \"ciudad\": \"Test City\",\n    \"presupuesto\": \"Bajo\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/bebedores/new/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Read Bebedores",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Nombre</th>",
+									"        <th>Ciudad</th>",
+									"        <th>Presupuesto</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{nombre}}</td>",
+									"            <td>{{ciudad}}</td>",
+									"            <td>{{presupuesto}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/bebedores"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Bebedor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nombre\": \"Updated Bebedor\",\n    \"ciudad\": \"Updated City\",\n    \"presupuesto\": \"Alto\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/bebedores/{{bebedorId}}/edit/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Bebedor",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/bebedores/{{bebedorId}}/delete"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Bebida",
+			"item": [
+				{
+					"name": "Create Bebida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Nombre de la bebida\",\n  \"grado_alcohol\": 5,\n  \"tipo\": {\n    \"id\": 1\n  }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/bebidas/new/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Read Bebidas",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>ID</th>",
+									"        <th>Nombre</th>",
+									"        <th>Grado de Alcohol</th>",
+									"        <th>Tipo ID</th>",
+									"        <th>Tipo Nombre</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response}}",
+									"        <tr>",
+									"            <td>{{id}}</td>",
+									"            <td>{{nombre}}</td>",
+									"            <td>{{grado_alcohol}}</td>",
+									"            <td>{{tipo.id}}</td>",
+									"            <td>{{tipo.nombre}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return { response: pm.response.json() }",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/bebidas"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Bebida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"nombre\": \"Nombre bebida actualizado\",\n  \"grado_alcohol\": 5,\n  \"tipo\": {\n    \"id\": 2\n  }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/bebidas/{{bebidaId}}/edit/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Bebida",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/bebidas/{{bebidaId}}/delete"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Frecuentan",
+			"item": [
+				{
+					"name": "Create Frecuentan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pk\": {\n        \"id_bebedor\": {\n            \"id\": {{bebedorId}}\n        },\n        \"id_bar\": {\n            \"id\": {{barId}}\n        },\n        \"fecha_visita\": \"2024-02-23\",\n        \"horario\": \"nocturno\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/frecuentan/new/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Read Frecuentan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Bebedor ID</th>",
+									"        <th>Bar ID</th>",
+									"        <th>Fecha Visita</th>",
+									"        <th>Horario</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response}}",
+									"        <tr>",
+									"            <td>{{this.pk.id_bebedor.id}}</td>",
+									"            <td>{{this.pk.id_bar.id}}</td>",
+									"            <td>{{this.pk.fecha_visita}}</td>",
+									"            <td>{{this.pk.horario}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/frecuentan"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Gustan",
+			"item": [
+				{
+					"name": "Create Gustan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pk\": {\n        \"id_bebedor\": {\n            \"id\": {{bebedorId}}\n        },\n        \"id_bebida\": {\n            \"id\": {{bebidaId}}\n        }\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/gustan/new/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Read Gustan",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/gustan"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Sirven",
+			"item": [
+				{
+					"name": "Create Sirven",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 201\", function () {",
+									"    pm.response.to.have.status(201);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"pk\": {\n        \"id_bar\": {\n            \"id\": {{barId}}\n        },\n        \"id_bebida\": {\n            \"id\": {{bebidaId}}\n        },\n        \"horario\": \"diurno\"\n    }\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:8080/parranderos/sirven/new/save"
+					},
+					"response": []
+				},
+				{
+					"name": "Read Sirven",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});",
+									"var template = `",
+									"<style type=\"text/css\">",
+									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
+									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
+									"    .tftable tr {background-color:#ffffff;}",
+									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
+									"    .tftable tr:hover {background-color:#e0ffff;}",
+									"</style>",
+									"",
+									"<table class=\"tftable\" border=\"1\">",
+									"    <tr>",
+									"        <th>Bar ID</th>",
+									"        <th>Bar Name</th>",
+									"        <th>City</th>",
+									"        <th>Budget</th>",
+									"        <th>Number of Locations</th>",
+									"        <th>Beverage ID</th>",
+									"        <th>Beverage Name</th>",
+									"        <th>Alcohol Content</th>",
+									"        <th>Beverage Type ID</th>",
+									"        <th>Beverage Type Name</th>",
+									"        <th>Opening Hours</th>",
+									"    </tr>",
+									"    ",
+									"    {{#each response}}",
+									"        <tr>",
+									"            <td>{{pk.id_bar.id}}</td>",
+									"            <td>{{pk.id_bar.nombre}}</td>",
+									"            <td>{{pk.id_bar.ciudad}}</td>",
+									"            <td>{{pk.id_bar.presupuesto}}</td>",
+									"            <td>{{pk.id_bar.cant_sedes}}</td>",
+									"            <td>{{pk.id_bebida.id}}</td>",
+									"            <td>{{pk.id_bebida.nombre}}</td>",
+									"            <td>{{pk.id_bebida.grado_alcohol}}</td>",
+									"            <td>{{pk.id_bebida.tipo.id}}</td>",
+									"            <td>{{pk.id_bebida.tipo.nombre}}</td>",
+									"            <td>{{pk.horario}}</td>",
+									"        </tr>",
+									"    {{/each}}",
+									"</table>",
+									"`;",
+									"",
+									"function constructVisualizerPayload() {",
+									"    return {response: pm.response.json()}",
+									"}",
+									"",
+									"pm.visualizer.set(template, constructVisualizerPayload());"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": "http://localhost:8080/parranderos/sirven"
+					},
+					"response": []
+				}
+			]
 		}
 	]
 }
