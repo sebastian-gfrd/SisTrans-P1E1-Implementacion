@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-AlpescabApplication<alpescab>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "uniandes.edu.co.alpescab.AlpescabApplication",
+            "projectName": "alpescab",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}
