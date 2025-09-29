@@ -1,4 +1,5 @@
-package uniandes.edu.co.parranderos.modelo;
+package uniandes.edu.co.alpescab.modelo;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -6,19 +7,20 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="tipos_bebida")
-public class Tipo_bebida {
+@Table(name = "ejemplos")
+public class Ejemplo {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String nombre;
 
-    public Tipo_bebida(){;}
+    public Ejemplo() {
+        // Constructor por defecto requerido por JPA
+    }
 
-    public Tipo_bebida(String nombre)
-    {
+    public Ejemplo(String nombre) {
         this.nombre = nombre;
     }
 
@@ -30,13 +32,11 @@ public class Tipo_bebida {
         this.id = id;
     }
 
-    public String  getNombre() {
+    public String getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre){
+    public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
-    
 }

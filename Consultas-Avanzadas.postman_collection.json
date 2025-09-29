@@ -16,14 +16,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/parranderos/bebidas/consulta?ciudad=Medellin&minGrado=30",
+							"raw": "http://localhost:8080/alpescab/bebidas/consulta?ciudad=Medellin&minGrado=30",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"parranderos",
+								"alpescab",
 								"bebidas",
 								"consulta"
 							],
@@ -47,14 +47,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/parranderos/bebidas/consulta?ciudad=Cali&minGrado=5&maxGrado=10",
+							"raw": "http://localhost:8080/alpescab/bebidas/consulta?ciudad=Cali&minGrado=5&maxGrado=10",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"parranderos",
+								"alpescab",
 								"bebidas",
 								"consulta"
 							],
@@ -82,14 +82,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/parranderos/bares/consulta?ciudad=Cali&tipo=jerez",
+							"raw": "http://localhost:8080/alpescab/bares/consulta?ciudad=Cali&tipo=jerez",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"parranderos",
+								"alpescab",
 								"bares",
 								"consulta"
 							],
@@ -113,14 +113,14 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/parranderos/bebedores/consulta?nombre=Juan",
+							"raw": "http://localhost:8080/alpescab/bebedores/consulta?nombre=Juan",
 							"protocol": "http",
 							"host": [
 								"localhost"
 							],
 							"port": "8080",
 							"path": [
-								"parranderos",
+								"alpescab",
 								"bebedores",
 								"consulta"
 							],
