@@ -2,21 +2,37 @@ package uniandes.edu.co.alpescab.modelo;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name ="TARJETA_CREDITO")
-public  abstract class TARJETA_CREDITO {
+public class TARJETA_CREDITO {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "TARJETA_CREDITO_SEQ")
+    @SequenceGenerator(name = "TARJETA_CREDITO_SEQ", sequenceName = "TARJETA_CREDITO_SEQ", allocationSize = 1)
     private Integer ID_TARJETA;
+    
+    @Column(nullable = false)
+    @JsonProperty("numero_tarjeta")
     private String NUMERO_TARJETA;
-    private String  NOMBRE_EN_TARJETA;
+    
+    @Column(nullable = false)
+    @JsonProperty("nombre_en_tarjeta")
+    private String NOMBRE_EN_TARJETA;
+    
+    @Column(nullable = false)
+    @JsonProperty("fecha_vencimiento")
     private LocalDate FECHA_VENCIMIENTO;
+    
+    @Column(nullable = false)
+    @JsonProperty("codigo_seguridad")
     private String CODIGO_SEGURIDAD;
     public TARJETA_CREDITO(String nUMERO_TARJETA, String nOMBRE_EN_TARJETA, LocalDate fECHA_VENCIMIENTO,
             String cODIGO_SEGURIDAD) {

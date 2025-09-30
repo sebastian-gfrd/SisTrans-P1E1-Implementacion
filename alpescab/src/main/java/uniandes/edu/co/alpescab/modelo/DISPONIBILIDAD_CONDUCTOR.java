@@ -18,7 +18,7 @@ public class DISPONIBILIDAD_CONDUCTOR {
     private Integer id_disponibilidad;
 
     @ManyToOne
-    @JoinColumn(name="id_usuario_conductor", referencedColumnName ="ID_PERSONA")
+    @JoinColumn(name="id_usuario_conductor", referencedColumnName ="ID_USUARIO")
     private USUARIO_CONDUCTOR idUsuarioConductor;
 
     private String dia;

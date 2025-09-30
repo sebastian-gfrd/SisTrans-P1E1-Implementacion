@@ -18,7 +18,7 @@ public class VEHICULO {
     private String CAPACIDAD;
 
     @ManyToOne
-    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_PERSONA") // FK hacia USUARIO_CONDUCTOR
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO") // FK hacia USUARIO_CONDUCTOR
     private USUARIO_CONDUCTOR idUsuario;
 
     @ManyToOne

@@ -1,30 +1,24 @@
 package uniandes.edu.co.alpescab.modelo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
-
-import jakarta.persistence.SequenceGenerator;
 
 @Entity
 @Table(name="PERSONA")
-@Inheritance(strategy = InheritanceType.JOINED)
-public abstract class PERSONA {
+public class PERSONA {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSONA_SEQ")
-    @SequenceGenerator(name = "PERSONA_SEQ", sequenceName = "PERSONA_SEQ", allocationSize = 1)
-    private Integer ID_PERSONA;
-
     @Column(unique = true, nullable = false)
     private String CEDULA;
 
+    @Column(nullable = false)
     private String NOMBRE;
+    
     private String CONTACTO;
+    
+    @JsonProperty("numero_celu")
     private String NUMERO_CELULAR;
 
     public PERSONA(String cedula, String nombre, String contacto, String numero_celu) {
@@ -38,43 +32,35 @@ public abstract class PERSONA {
         ;
     }
 
-    public Integer getID_PERSONA() {
-        return ID_PERSONA;
-    }
-
-    public void setID_PERSONA(Integer iD_PERSONA) {
-        ID_PERSONA = iD_PERSONA;
-    }
-
     public String getCEDULA() {
         return CEDULA;
     }
 
-    public void setCEDULA(String cEDULA) {
-        CEDULA = cEDULA;
+    public void setCEDULA(String cedula) {
+        CEDULA = cedula;
     }
 
     public String getNOMBRE() {
         return NOMBRE;
     }
 
-    public void setNOMBRE(String nOMBRE) {
-        NOMBRE = nOMBRE;
+    public void setNOMBRE(String nombre) {
+        NOMBRE = nombre;
     }
 
     public String getCONTACTO() {
         return CONTACTO;
     }
 
-    public void setCONTACTO(String cONTACTO) {
-        CONTACTO = cONTACTO;
+    public void setCONTACTO(String contacto) {
+        CONTACTO = contacto;
     }
 
     public String getNUMERO_CELULAR() {
         return NUMERO_CELULAR;
     }
 
-    public void setNUMERO_CELULAR(String nUMERO_CELULAR) {
-        NUMERO_CELULAR = nUMERO_CELULAR;
+    public void setNUMERO_CELULAR(String numero_celular) {
+        NUMERO_CELULAR = numero_celular;
     }
 }

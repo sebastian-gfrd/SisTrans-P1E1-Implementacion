@@ -35,11 +35,11 @@ public abstract class SERVICIO {
     private VEHICULO VEHICULO;
 
     @ManyToOne
-    @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID_PERSONA") // FK hacia USUARIO
+    @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID_USUARIO") // FK hacia USUARIO
     private USUARIO_SERVICIO cliente;
 
     @ManyToOne
-    @JoinColumn(name = "CONDUCTOR_ID", referencedColumnName = "ID_PERSONA") // FK hacia CONDUCTOR
+    @JoinColumn(name = "CONDUCTOR_ID", referencedColumnName = "ID_USUARIO") // FK hacia CONDUCTOR
     private USUARIO_CONDUCTOR conductor;
 
     public SERVICIO(Integer nivel, String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,

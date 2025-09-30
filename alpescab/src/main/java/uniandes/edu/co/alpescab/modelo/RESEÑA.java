@@ -28,11 +28,11 @@ public class RESEÑA {
     private Float CALIFICACION;
 
     @ManyToOne
-    @JoinColumn(name = "ID_USUARIO_AUTOR", referencedColumnName = "ID_PERSONA") // FK hacia usuario autor
+    @JoinColumn(name = "ID_USUARIO_AUTOR", referencedColumnName = "ID_USUARIO") // FK hacia usuario autor
     private USUARIO USUARIO_AUTOR;
 
     @ManyToOne
-    @JoinColumn(name = "ID_USUARIO_DESTINO", referencedColumnName = "ID_PERSONA") // FK hacia usario receptor
+    @JoinColumn(name = "ID_USUARIO_DESTINO", referencedColumnName = "ID_USUARIO") // FK hacia usario receptor
     private USUARIO USUARIO_DESTINO;
 
     @ManyToOne
