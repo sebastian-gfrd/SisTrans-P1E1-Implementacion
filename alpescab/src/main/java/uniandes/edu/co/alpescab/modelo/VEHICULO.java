@@ -15,17 +15,17 @@ public class VEHICULO {
     private String MARCA;
     private String MODELO;
     private String COLOR;
-    private String CAPACIDAD;
+    private Integer CAPACIDAD;
 
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO") // FK hacia USUARIO_CONDUCTOR
     private USUARIO_CONDUCTOR idUsuario;
 
     @ManyToOne
-    @JoinColumn(name="ID_CIUDAD",referencedColumnName="ID_CIUDAD")
+    @JoinColumn(name="ID_CIUDAD_EXP",referencedColumnName="ID_CIUDAD")
     private CIUDAD ID_CIUDAD;
 
-    public VEHICULO(String pLACA, String tIPO_VEHICULO, String mARCA, String mODELO, String cOLOR, String cAPACIDAD,
+    public VEHICULO(String pLACA, String tIPO_VEHICULO, String mARCA, String mODELO, String cOLOR, Integer cAPACIDAD,
             USUARIO_CONDUCTOR idUsuario, CIUDAD iD_CIUDAD) {
         this.PLACA = pLACA;
         this.TIPO_VEHICULO = tIPO_VEHICULO;
@@ -81,11 +81,11 @@ public class VEHICULO {
         COLOR = cOLOR;
     }
 
-    public String getCAPACIDAD() {
+    public Integer getCAPACIDAD() {
         return CAPACIDAD;
     }
 
-    public void setCAPACIDAD(String cAPACIDAD) {
+    public void setCAPACIDAD(Integer cAPACIDAD) {
         CAPACIDAD = cAPACIDAD;
     }
 

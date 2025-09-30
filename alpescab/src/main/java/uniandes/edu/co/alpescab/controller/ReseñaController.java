@@ -31,11 +31,18 @@ public class ReseñaController {
 
     @PostMapping
     public RESEÑA addReseña(@RequestBody ReseñaDTO reseñaDTO) {
-        SERVICIO servicio = servicioRepository.findById(reseñaDTO.getId_servicio()).get();
-        USUARIO autor = usuarioRepository.findById(reseñaDTO.getId_usuario_autor()).get();
-        USUARIO destino = usuarioRepository.findById(reseñaDTO.getId_usuario_destino()).get();
+        try {
+            USUARIO autor = usuarioRepository.findById(reseñaDTO.getId_usuario_autor()).get();
+            USUARIO destino = usuarioRepository.findById(reseñaDTO.getId_usuario_destino()).get();
 
-        RESEÑA nuevaReseña = new RESEÑA(LocalDate.now(), reseñaDTO.getComentario(), reseñaDTO.getCalificacion(), autor, destino, servicio);
-        return reseñaRepository.save(nuevaReseña);
+            // Use findById to get the SERVICIO entity
+            SERVICIO servicio = servicioRepository.findById(reseñaDTO.getId_servicio())
+                .orElseThrow(() -> new RuntimeException("Service not found with ID: " + reseñaDTO.getId_servicio()));
+
+            RESEÑA nuevaReseña = new RESEÑA(LocalDate.now(), reseñaDTO.getComentario(), reseñaDTO.getCalificacion(), autor, destino, servicio);
+            return reseñaRepository.save(nuevaReseña);
+        } catch (Exception e) {
+            throw new RuntimeException("Error creating reseña: " + e.getMessage(), e);
+        }
     }
 }

@@ -69,46 +69,57 @@ public class ServicioController {
     @PostMapping("/solicitar")
     @Transactional
     public ResponseEntity<SERVICIO> solicitarServicio(@RequestBody SolicitudServicioDTO solicitud) {
-        USUARIO_SERVICIO cliente = usuarioServicioRepository.findById(solicitud.getId_cliente()).get();
-        PUNTO_UBICACION puntoPartida = puntoUbicacionRepository.findById(solicitud.getId_punto_partida()).get();
-        PUNTO_UBICACION puntoLlegada = puntoUbicacionRepository.findById(solicitud.getId_punto_llegada()).get();
+        try {
+            USUARIO_SERVICIO cliente = usuarioServicioRepository.findById(solicitud.getId_cliente())
+                .orElseThrow(() -> new RuntimeException("Cliente no encontrado con ID: " + solicitud.getId_cliente()));
+            PUNTO_UBICACION puntoPartida = puntoUbicacionRepository.findById(solicitud.getId_punto_partida())
+                .orElseThrow(() -> new RuntimeException("Punto de partida no encontrado con ID: " + solicitud.getId_punto_partida()));
+            PUNTO_UBICACION puntoLlegada = puntoUbicacionRepository.findById(solicitud.getId_punto_llegada())
+                .orElseThrow(() -> new RuntimeException("Punto de llegada no encontrado con ID: " + solicitud.getId_punto_llegada()));
 
-        DISPONIBILIDAD_CONDUCTOR disponibilidad = disponibilidadConductorRepository.findAvailableDriver(solicitud.getTipo_servicio(), LocalDateTime.now());
+            DISPONIBILIDAD_CONDUCTOR disponibilidad = disponibilidadConductorRepository.findAvailableDriver(solicitud.getTipo_servicio());
 
-        if (disponibilidad == null) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            if (disponibilidad == null) {
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+            }
+
+            List<VEHICULO> vehiculos = vehiculoRepository.findByIdUsuario(disponibilidad.getIdUsuarioConductor());
+            VEHICULO vehiculo = vehiculos.isEmpty() ? null : vehiculos.get(0);
+
+            // Dummy distance and cost calculation
+            double distance = Math.sqrt(Math.pow(puntoLlegada.getLATITUD() - puntoPartida.getLATITUD(), 2) + Math.pow(puntoLlegada.getLONGITUD() - puntoPartida.getLONGITUD(), 2)) * 111.32;
+            // Ensure distance is at least 1 to satisfy Oracle constraint CHK_SERVICIO_DIST (DISTANCIA_KM > 0)
+            if (distance <= 0) {
+                distance = 1.0; // Minimum distance of 1 km
+            }
+            int cost = (int) (distance * 1000);
+
+            SERVICIO nuevoServicio = null;
+
+            if ("transporte_pasajero".equals(solicitud.getTipo_servicio())) {
+                Integer pasajeros = (Integer) solicitud.getDetalles_servicio().get("pasajeros");
+                nuevoServicio = new TRANSPORTE_PASAJERO(solicitud.getModalidad(), (int) distance, cost, 0.1f, LocalDateTime.now(), null, vehiculo, cliente, disponibilidad.getIdUsuarioConductor(), pasajeros);
+                transportePasajeroRepository.save((TRANSPORTE_PASAJERO) nuevoServicio);
+            } else if ("domicilio_comida".equals(solicitud.getTipo_servicio())) {
+                String numeroOrden = (String) solicitud.getDetalles_servicio().get("numero_orden");
+                String detalleOrden = (String) solicitud.getDetalles_servicio().get("detalle_orden");
+                String restaurante = (String) solicitud.getDetalles_servicio().get("restaurante");
+                nuevoServicio = new DOMICILIO_COMIDA(solicitud.getModalidad(), (int) distance, cost, 0.1f, LocalDateTime.now(), null, vehiculo, cliente, disponibilidad.getIdUsuarioConductor(), numeroOrden, detalleOrden, restaurante);
+                domicilioComidaRepository.save((DOMICILIO_COMIDA) nuevoServicio);
+            } else if ("servicio_mercancia".equals(solicitud.getTipo_servicio())) {
+                String descripcion = (String) solicitud.getDetalles_servicio().get("descripcion");
+                Integer pesoAproximado = (Integer) solicitud.getDetalles_servicio().get("peso_aproximado");
+                nuevoServicio = new SERVICIO_MERCANCIA(solicitud.getModalidad(), (int) distance, cost, 0.1f, LocalDateTime.now(), null, vehiculo, cliente, disponibilidad.getIdUsuarioConductor(), descripcion, pesoAproximado);
+                servicioMercanciaRepository.save((SERVICIO_MERCANCIA) nuevoServicio);
+            }
+
+            disponibilidad.setAsignado("1");
+            disponibilidadConductorRepository.save(disponibilidad);
+
+            return new ResponseEntity<>(nuevoServicio, HttpStatus.CREATED);
+        } catch (RuntimeException e) {
+            return ResponseEntity.badRequest().build();
         }
-
-        List<VEHICULO> vehiculos = vehiculoRepository.findByIdUsuario(disponibilidad.getIdUsuarioConductor());
-        VEHICULO vehiculo = vehiculos.isEmpty() ? null : vehiculos.get(0);
-
-        // Dummy distance and cost calculation
-        double distance = Math.sqrt(Math.pow(puntoLlegada.getLATITUD() - puntoPartida.getLATITUD(), 2) + Math.pow(puntoLlegada.getLONGITUD() - puntoPartida.getLONGITUD(), 2)) * 111.32;
-        int cost = (int) (distance * 1000);
-
-        SERVICIO nuevoServicio = null;
-
-        if ("transporte_pasajero".equals(solicitud.getTipo_servicio())) {
-            Integer pasajeros = (Integer) solicitud.getDetalles_servicio().get("pasajeros");
-            nuevoServicio = new TRANSPORTE_PASAJERO(null, solicitud.getModalidad(), (int) distance, cost, 0.1f, LocalDateTime.now(), null, vehiculo, cliente, disponibilidad.getIdUsuarioConductor(), pasajeros);
-            transportePasajeroRepository.save((TRANSPORTE_PASAJERO) nuevoServicio);
-        } else if ("domicilio_comida".equals(solicitud.getTipo_servicio())) {
-            String numeroOrden = (String) solicitud.getDetalles_servicio().get("numero_orden");
-            String detalleOrden = (String) solicitud.getDetalles_servicio().get("detalle_orden");
-            String restaurante = (String) solicitud.getDetalles_servicio().get("restaurante");
-            nuevoServicio = new DOMICILIO_COMIDA(null, solicitud.getModalidad(), (int) distance, cost, 0.1f, LocalDateTime.now(), null, vehiculo, cliente, disponibilidad.getIdUsuarioConductor(), numeroOrden, detalleOrden, restaurante);
-            domicilioComidaRepository.save((DOMICILIO_COMIDA) nuevoServicio);
-        } else if ("servicio_mercancia".equals(solicitud.getTipo_servicio())) {
-            String descripcion = (String) solicitud.getDetalles_servicio().get("descripcion");
-            Integer pesoAproximado = (Integer) solicitud.getDetalles_servicio().get("peso_aproximado");
-            nuevoServicio = new SERVICIO_MERCANCIA(null, solicitud.getModalidad(), (int) distance, cost, 0.1f, LocalDateTime.now(), null, vehiculo, cliente, disponibilidad.getIdUsuarioConductor(), descripcion, pesoAproximado);
-            servicioMercanciaRepository.save((SERVICIO_MERCANCIA) nuevoServicio);
-        }
-
-        disponibilidad.setAsignado("1");
-        disponibilidadConductorRepository.save(disponibilidad);
-
-        return new ResponseEntity<>(nuevoServicio, HttpStatus.CREATED);
     }
 
     @PutMapping("/{id}/finalizar")

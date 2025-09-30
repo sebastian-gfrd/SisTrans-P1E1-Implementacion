@@ -45,7 +45,12 @@ public class DisponibilidadConductorController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        USUARIO_CONDUCTOR conductor = usuarioConductorRepository.findById(disponibilidadDTO.getIdUsuarioConductor()).get();
+        USUARIO_CONDUCTOR conductor = usuarioConductorRepository.findById(disponibilidadDTO.getIdUsuarioConductor())
+            .orElse(null);
+        
+        if (conductor == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
 
         DISPONIBILIDAD_CONDUCTOR newDisponibilidad = new DISPONIBILIDAD_CONDUCTOR();
         newDisponibilidad.setIdUsuarioConductor(conductor);

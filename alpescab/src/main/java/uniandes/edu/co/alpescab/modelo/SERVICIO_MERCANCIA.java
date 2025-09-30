@@ -12,9 +12,9 @@ public class SERVICIO_MERCANCIA extends SERVICIO {
     private String DESCRIPCION;
     private Integer PESO_APROXIMADO;
 
-    public SERVICIO_MERCANCIA(Integer nivel, String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
+    public SERVICIO_MERCANCIA(String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
             LocalDateTime hORA_FIN, VEHICULO vEHICULO, USUARIO_SERVICIO cliente, USUARIO_CONDUCTOR conductor, String descripcion, Integer peso_aproximado) {
-        super(nivel, mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
+        super(mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
         this.DESCRIPCION = descripcion;
         this.PESO_APROXIMADO = peso_aproximado;
     }

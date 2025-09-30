@@ -22,7 +22,6 @@ public abstract class SERVICIO {
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SERVICIO_SEQ")
     @SequenceGenerator(name = "SERVICIO_SEQ", sequenceName = "SERVICIO_SEQ", allocationSize = 1)
     private Integer ID_SERVICIO;
-    private Integer NIVEL;
     private String MODALIDAD;
     private Integer DISTANCIA_KM;
     private Integer COSTO;
@@ -35,16 +34,15 @@ public abstract class SERVICIO {
     private VEHICULO VEHICULO;
 
     @ManyToOne
-    @JoinColumn(name = "CLIENTE_ID", referencedColumnName = "ID_USUARIO") // FK hacia USUARIO
+    @JoinColumn(name = "ID_USUARIO", referencedColumnName = "ID_USUARIO") // FK hacia USUARIO_SERVICIO
     private USUARIO_SERVICIO cliente;
 
     @ManyToOne
-    @JoinColumn(name = "CONDUCTOR_ID", referencedColumnName = "ID_USUARIO") // FK hacia CONDUCTOR
+    @JoinColumn(name = "ID_CONDUCTOR", referencedColumnName = "ID_USUARIO") // FK hacia USUARIO_CONDUCTOR
     private USUARIO_CONDUCTOR conductor;
 
-    public SERVICIO(Integer nivel, String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
+    public SERVICIO(String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
             LocalDateTime hORA_FIN, VEHICULO vEHICULO, USUARIO_SERVICIO cliente, USUARIO_CONDUCTOR conductor) {
-        this.NIVEL = nivel;
         this.MODALIDAD = mODALIDAD;
         this.DISTANCIA_KM = dISTANCIA_KM;
         this.COSTO = cOSTO;
@@ -66,14 +64,6 @@ public abstract class SERVICIO {
 
     public void setID_SERVICIO(Integer iD_SERVICIO) {
         ID_SERVICIO = iD_SERVICIO;
-    }
-
-    public Integer getNIVEL() {
-        return NIVEL;
-    }
-
-    public void setNIVEL(Integer nivel) {
-        NIVEL = nivel;
     }
 
     public String getMODALIDAD() {

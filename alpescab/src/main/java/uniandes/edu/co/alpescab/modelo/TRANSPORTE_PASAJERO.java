@@ -11,9 +11,9 @@ public class TRANSPORTE_PASAJERO extends SERVICIO {
 
     private Integer PASAJEROS;
 
-    public TRANSPORTE_PASAJERO(Integer nivel, String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
+    public TRANSPORTE_PASAJERO(String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
             LocalDateTime hORA_FIN, VEHICULO vEHICULO, USUARIO_SERVICIO cliente, USUARIO_CONDUCTOR conductor, Integer pasajeros) {
-        super(nivel, mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
+        super(mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
         this.PASAJEROS = pasajeros;
     }
 

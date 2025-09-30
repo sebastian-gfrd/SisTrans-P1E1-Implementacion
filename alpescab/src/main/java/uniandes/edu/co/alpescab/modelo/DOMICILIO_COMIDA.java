@@ -13,9 +13,9 @@ public class DOMICILIO_COMIDA extends SERVICIO {
     private String DETALLE_ORDEN;
     private String RESTAURANTE;
 
-    public DOMICILIO_COMIDA(Integer nivel, String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
+    public DOMICILIO_COMIDA(String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
             LocalDateTime hORA_FIN, VEHICULO vEHICULO, USUARIO_SERVICIO cliente, USUARIO_CONDUCTOR conductor, String numero_orden, String detalle_orden, String restaurante) {
-        super(nivel, mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
+        super(mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
         this.NUMERO_ORDEN = numero_orden;
         this.DETALLE_ORDEN = detalle_orden;
         this.RESTAURANTE = restaurante;

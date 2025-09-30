@@ -14,7 +14,7 @@ public class SERVICIO_PUNTO_PK implements Serializable {
     private SERVICIO SERVICIO;
 
     @ManyToOne
-    @JoinColumn(name = "ID_UBICACION", referencedColumnName = "ID_PUNTO")
+    @JoinColumn(name = "ID_UBICACION", referencedColumnName = "ID_UBICACION")
     private PUNTO_UBICACION ID_UBICACION;
 
     public SERVICIO_PUNTO_PK(SERVICIO sERVICIO, PUNTO_UBICACION iD_UBICACION) {

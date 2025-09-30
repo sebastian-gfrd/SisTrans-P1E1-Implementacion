@@ -18,7 +18,7 @@ public class PUNTO_UBICACION {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PUNTO_UBICACION_SEQ")
     @SequenceGenerator(name = "PUNTO_UBICACION_SEQ", sequenceName = "PUNTO_UBICACION_SEQ", allocationSize = 1)
-    private Integer  ID_PUNTO;
+    private Integer  ID_UBICACION;
     private String  DIRECCION_APROX;
     private double LATITUD ;
     private double LONGITUD;
@@ -35,11 +35,11 @@ public class PUNTO_UBICACION {
         Ciudad = ciudad;
     }
     public PUNTO_UBICACION(){;}
-    public Integer getID_PUNTO() {
-        return ID_PUNTO;
+    public Integer getID_UBICACION() {
+        return ID_UBICACION;
     }
-    public void setID_PUNTO(Integer iD_PUNTO) {
-        ID_PUNTO = iD_PUNTO;
+    public void setID_UBICACION(Integer iD_UBICACION) {
+        ID_UBICACION = iD_UBICACION;
     }
     public String getDIRECCION_APROX() {
         return DIRECCION_APROX;
