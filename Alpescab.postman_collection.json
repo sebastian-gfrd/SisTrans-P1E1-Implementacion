@@ -1,685 +1,295 @@
 {
 	"info": {
-		"_postman_id": "e0b7167c-ddc4-49db-ab53-f41c7485825d",
+		"_postman_id": "a6c75b63-5c20-4842-a8ac-43572aaae301",
 		"name": "Alpescab",
-		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
-		"_exporter_id": "19767625",
-		"_collection_link": "https://solar-spaceship-244943.postman.co/workspace/aaa~ed20b85b-f663-45c4-851e-143e241a0f31/collection/19767625-e0b7167c-ddc4-49db-ab53-f41c7485825d?action=share&source=collection_link&creator=19767625"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "46391717"
 	},
 	"item": [
 		{
-			"name": "Bar",
-			"item": [
-				{
-					"name": "Create Bar",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
+			"name": "RF1 Registrar una ciudad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nombre\": \"Bogota\",\r\n    \"departamento\": \"Cundinamarca\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Test Bar\",\n    \"ciudad\": \"Test City\",\n    \"presupuesto\": \"Alto\",\n    \"cant_sedes\": 450\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/bares/new/save"
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "Read Bares",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
+				"url": {
+					"raw": "http://localhost:8080/api/ciudades",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/bares"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Bar",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Updated Bar\",\n    \"ciudad\": \"Updated City\",\n    \"presupuesto\": \"Bajo\",\n    \"cant_sedes\": 3\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/bares/{{barId}}/edit/save"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Bar",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/bares/{{barId}}/delete"
-					},
-					"response": []
+					"port": "8080",
+					"path": [
+						"api",
+						"ciudades"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "Bebedor",
-			"item": [
-				{
-					"name": "Crear Bebedor",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
+			"name": "RF2 Registrar un usuario de servicios",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"cedula\": \"123456789\",\r\n  \"nombre\": \"Juan Pérez\",\r\n  \"contacto\": \"juan@example.com\",\r\n  \"numero_celu\": \"3001234567\",\r\n  \"correo\": \"juan@example.com\",\r\n  \"estado\": \"activo\",\r\n  \"id_tarjeta\": {\r\n    \"numero_tarjeta\": \"4111111111111114\",\r\n    \"nombre_en_tarjeta\": \"JUAN PEREZ\",\r\n    \"fecha_vencimiento\": \"2025-12-31\",\r\n    \"codigo_seguridad\": \"123\"\r\n  }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Test Bebedor\",\n    \"ciudad\": \"Test City\",\n    \"presupuesto\": \"Bajo\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/bebedores/new/save"
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "Read Bebedores",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var template = `",
-									"<style type=\"text/css\">",
-									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
-									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
-									"    .tftable tr {background-color:#ffffff;}",
-									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
-									"    .tftable tr:hover {background-color:#e0ffff;}",
-									"</style>",
-									"",
-									"<table class=\"tftable\" border=\"1\">",
-									"    <tr>",
-									"        <th>ID</th>",
-									"        <th>Nombre</th>",
-									"        <th>Ciudad</th>",
-									"        <th>Presupuesto</th>",
-									"    </tr>",
-									"    ",
-									"    {{#each response}}",
-									"        <tr>",
-									"            <td>{{id}}</td>",
-									"            <td>{{nombre}}</td>",
-									"            <td>{{ciudad}}</td>",
-									"            <td>{{presupuesto}}</td>",
-									"        </tr>",
-									"    {{/each}}",
-									"</table>",
-									"`;",
-									"",
-									"function constructVisualizerPayload() {",
-									"    return {response: pm.response.json()}",
-									"}",
-									"",
-									"pm.visualizer.set(template, constructVisualizerPayload());"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
+				"url": {
+					"raw": "http://localhost:8080/api/usuarios-servicio",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/bebedores"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Bebedor",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"nombre\": \"Updated Bebedor\",\n    \"ciudad\": \"Updated City\",\n    \"presupuesto\": \"Alto\"\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/bebedores/{{bebedorId}}/edit/save"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Bebedor",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/bebedores/{{bebedorId}}/delete"
-					},
-					"response": []
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios-servicio"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "Bebida",
-			"item": [
-				{
-					"name": "Create Bebida",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
+			"name": "RF3 Registrar un usuario conductor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"cedula\": \"987654321\",\r\n    \"nombre\": \"Maria Lopez\",\r\n    \"contacto\": \"maria.lopez@example.com\",\r\n    \"numero_celular\": \"3109876543\",\r\n    \"correo\": \"maria.lopez@example.com\",\r\n    \"estado\": \"activo\",\r\n    \"certificado\": \"certificado123\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Nombre de la bebida\",\n  \"grado_alcohol\": 5,\n  \"tipo\": {\n    \"id\": 1\n  }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/bebidas/new/save"
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "Read Bebidas",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var template = `",
-									"<style type=\"text/css\">",
-									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
-									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
-									"    .tftable tr {background-color:#ffffff;}",
-									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
-									"    .tftable tr:hover {background-color:#e0ffff;}",
-									"</style>",
-									"",
-									"<table class=\"tftable\" border=\"1\">",
-									"    <tr>",
-									"        <th>ID</th>",
-									"        <th>Nombre</th>",
-									"        <th>Grado de Alcohol</th>",
-									"        <th>Tipo ID</th>",
-									"        <th>Tipo Nombre</th>",
-									"    </tr>",
-									"    ",
-									"    {{#each response}}",
-									"        <tr>",
-									"            <td>{{id}}</td>",
-									"            <td>{{nombre}}</td>",
-									"            <td>{{grado_alcohol}}</td>",
-									"            <td>{{tipo.id}}</td>",
-									"            <td>{{tipo.nombre}}</td>",
-									"        </tr>",
-									"    {{/each}}",
-									"</table>",
-									"`;",
-									"",
-									"function constructVisualizerPayload() {",
-									"    return { response: pm.response.json() }",
-									"}",
-									"",
-									"pm.visualizer.set(template, constructVisualizerPayload());"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
+				"url": {
+					"raw": "http://localhost:8080/api/usuarios-conductor",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/bebidas"
-					},
-					"response": []
-				},
-				{
-					"name": "Update Bebida",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n  \"nombre\": \"Nombre bebida actualizado\",\n  \"grado_alcohol\": 5,\n  \"tipo\": {\n    \"id\": 2\n  }\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/bebidas/{{bebidaId}}/edit/save"
-					},
-					"response": []
-				},
-				{
-					"name": "Delete Bebida",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
-					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/bebidas/{{bebidaId}}/delete"
-					},
-					"response": []
+					"port": "8080",
+					"path": [
+						"api",
+						"usuarios-conductor"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "Frecuentan",
-			"item": [
-				{
-					"name": "Create Frecuentan",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
+			"name": "RF4 Registrar un vehiculo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"placa\": \"ABC-123\",\r\n    \"tipo_vehiculo\": \"automovil\", \r\n    \"marca\": \"Renault\",\r\n    \"modelo\": \"Logan\",\r\n    \"color\": \"gris\",\r\n    \"capacidad\": 4,\r\n    \"idUsuario\": {\"id_usuario\": 65},\r\n    \"id_ciudad\": {\"id_ciudad\": 44}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"pk\": {\n        \"id_bebedor\": {\n            \"id\": {{bebedorId}}\n        },\n        \"id_bar\": {\n            \"id\": {{barId}}\n        },\n        \"fecha_visita\": \"2024-02-23\",\n        \"horario\": \"nocturno\"\n    }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/frecuentan/new/save"
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "Read Frecuentan",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"var template = `",
-									"<style type=\"text/css\">",
-									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
-									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
-									"    .tftable tr {background-color:#ffffff;}",
-									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
-									"    .tftable tr:hover {background-color:#e0ffff;}",
-									"</style>",
-									"",
-									"<table class=\"tftable\" border=\"1\">",
-									"    <tr>",
-									"        <th>Bebedor ID</th>",
-									"        <th>Bar ID</th>",
-									"        <th>Fecha Visita</th>",
-									"        <th>Horario</th>",
-									"    </tr>",
-									"    ",
-									"    {{#each response}}",
-									"        <tr>",
-									"            <td>{{this.pk.id_bebedor.id}}</td>",
-									"            <td>{{this.pk.id_bar.id}}</td>",
-									"            <td>{{this.pk.fecha_visita}}</td>",
-									"            <td>{{this.pk.horario}}</td>",
-									"        </tr>",
-									"    {{/each}}",
-									"</table>",
-									"`;",
-									"",
-									"function constructVisualizerPayload() {",
-									"    return {response: pm.response.json()}",
-									"}",
-									"",
-									"pm.visualizer.set(template, constructVisualizerPayload());",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
+				"url": {
+					"raw": "http://localhost:8080/api/vehiculos",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/frecuentan"
-					},
-					"response": []
+					"port": "8080",
+					"path": [
+						"api",
+						"vehiculos"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "Gustan",
-			"item": [
-				{
-					"name": "Create Gustan",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
+			"name": "RF5 Registrar disponibilidad",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUsuarioConductor\": 65,\r\n    \"dia\": \"Lunes\",\r\n    \"horario_inicio\": \"2025-09-29T08:00:00\",\r\n    \"horario_fin\": \"2025-09-29T12:00:00\",\r\n    \"tipo_servicio\": \"transporte de pasajeros\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"pk\": {\n        \"id_bebedor\": {\n            \"id\": {{bebedorId}}\n        },\n        \"id_bebida\": {\n            \"id\": {{bebidaId}}\n        }\n    }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/gustan/new/save"
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "Read Gustan",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
+				"url": {
+					"raw": "http://localhost:8080/api/disponibilidades-conductor",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/gustan"
-					},
-					"response": []
+					"port": "8080",
+					"path": [
+						"api",
+						"disponibilidades-conductor"
+					]
 				}
-			]
+			},
+			"response": []
 		},
 		{
-			"name": "Sirven",
-			"item": [
-				{
-					"name": "Create Sirven",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 201\", function () {",
-									"    pm.response.to.have.status(201);",
-									"});",
-									""
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
+			"name": "RF6 Modificar disponibilidad",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"idUsuarioConductor\": 1,\r\n    \"dia\": \"Martes\",\r\n    \"horario_inicio\": \"2025-09-30T09:00:00\",\r\n    \"horario_fin\": \"2025-09-30T13:00:00\",\r\n    \"tipo_servicio\": \"entrega de comida\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
 						}
-					],
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\n    \"pk\": {\n        \"id_bar\": {\n            \"id\": {{barId}}\n        },\n        \"id_bebida\": {\n            \"id\": {{bebidaId}}\n        },\n        \"horario\": \"diurno\"\n    }\n}\n",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": "http://localhost:8080/parranderos/sirven/new/save"
-					},
-					"response": []
+					}
 				},
-				{
-					"name": "Read Sirven",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"exec": [
-									"pm.test(\"Status code is 200\", function () {",
-									"    pm.response.to.have.status(200);",
-									"});",
-									"var template = `",
-									"<style type=\"text/css\">",
-									"    .tftable {font-size:14px;color:#333333;width:100%;border-width: 1px;border-color: #87ceeb;border-collapse: collapse;}",
-									"    .tftable th {font-size:18px;background-color:#87ceeb;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;text-align:left;}",
-									"    .tftable tr {background-color:#ffffff;}",
-									"    .tftable td {font-size:14px;border-width: 1px;padding: 8px;border-style: solid;border-color: #87ceeb;}",
-									"    .tftable tr:hover {background-color:#e0ffff;}",
-									"</style>",
-									"",
-									"<table class=\"tftable\" border=\"1\">",
-									"    <tr>",
-									"        <th>Bar ID</th>",
-									"        <th>Bar Name</th>",
-									"        <th>City</th>",
-									"        <th>Budget</th>",
-									"        <th>Number of Locations</th>",
-									"        <th>Beverage ID</th>",
-									"        <th>Beverage Name</th>",
-									"        <th>Alcohol Content</th>",
-									"        <th>Beverage Type ID</th>",
-									"        <th>Beverage Type Name</th>",
-									"        <th>Opening Hours</th>",
-									"    </tr>",
-									"    ",
-									"    {{#each response}}",
-									"        <tr>",
-									"            <td>{{pk.id_bar.id}}</td>",
-									"            <td>{{pk.id_bar.nombre}}</td>",
-									"            <td>{{pk.id_bar.ciudad}}</td>",
-									"            <td>{{pk.id_bar.presupuesto}}</td>",
-									"            <td>{{pk.id_bar.cant_sedes}}</td>",
-									"            <td>{{pk.id_bebida.id}}</td>",
-									"            <td>{{pk.id_bebida.nombre}}</td>",
-									"            <td>{{pk.id_bebida.grado_alcohol}}</td>",
-									"            <td>{{pk.id_bebida.tipo.id}}</td>",
-									"            <td>{{pk.id_bebida.tipo.nombre}}</td>",
-									"            <td>{{pk.horario}}</td>",
-									"        </tr>",
-									"    {{/each}}",
-									"</table>",
-									"`;",
-									"",
-									"function constructVisualizerPayload() {",
-									"    return {response: pm.response.json()}",
-									"}",
-									"",
-									"pm.visualizer.set(template, constructVisualizerPayload());"
-								],
-								"type": "text/javascript",
-								"packages": {}
-							}
-						}
+				"url": {
+					"raw": "http://localhost:8080/api/disponibilidades-conductor/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": "http://localhost:8080/parranderos/sirven"
-					},
-					"response": []
+					"port": "8080",
+					"path": [
+						"api",
+						"disponibilidades-conductor",
+						"1"
+					]
 				}
-			]
+			},
+			"response": []
+		},
+		{
+			"name": "RF7 Registrar punto geografico",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"direccion_aprox\": \"Carrera 1 # 1-1\",\r\n    \"latitud\": 4.6026,\r\n    \"longitud\": -74.0649,\r\n    \"nombre_local\": \"Universidad de los Andes\",\r\n    \"ciudad\": {\r\n        \"id_ciudad\": 44\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/puntos-ubicacion",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"puntos-ubicacion"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RF8 Solicitar servicio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_cliente\": 23,\r\n    \"id_punto_partida\": 66,\r\n    \"id_punto_llegada\": 66,\r\n    \"tipo_servicio\": \"transporte_pasajero\",  // ← Changed from \"transporte de pasajeros\"\r\n    \"modalidad\": \"estandar\",\r\n    \"detalles_servicio\": {\r\n        \"pasajeros\": 2\r\n    }\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/servicios/solicitar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"servicios",
+						"solicitar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RF9 Finalizar viaje",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/servicios/{id}/finalizar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"servicios",
+						"{id}",
+						"finalizar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "RF10/11 Dejar una reseña",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id_servicio\": 1,\r\n    \"id_usuario_autor\": 1,\r\n    \"id_usuario_destino\": 2,\r\n    \"comentario\": \"Excelente servicio\",\r\n    \"calificacion\": 5.0\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/reseñas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"reseñas"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
