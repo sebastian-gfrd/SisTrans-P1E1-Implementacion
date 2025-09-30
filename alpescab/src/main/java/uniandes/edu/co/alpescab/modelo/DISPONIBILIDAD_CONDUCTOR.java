@@ -15,8 +15,8 @@ public class DISPONIBILIDAD_CONDUCTOR {
     private Integer id_disponibilidad;
 
     @ManyToOne
-    @JoinColumn(name="id_usuario_conductor", referencedColumnName ="ID_USUARIO")
-    private USUARIO_CONDUCTOR id_usuario_conductor;
+    @JoinColumn(name="id_usuario_conductor", referencedColumnName ="ID_PERSONA")
+    private USUARIO_CONDUCTOR idUsuarioConductor;
 
     private String dia;
     private LocalDateTime horario_inicio;
@@ -24,10 +24,10 @@ public class DISPONIBILIDAD_CONDUCTOR {
     private String asignado;
     private String tipo_servicio;
     
-    public DISPONIBILIDAD_CONDUCTOR(Integer id_disponibilidad, USUARIO_CONDUCTOR id_usuario_conductor, String dia,
+    public DISPONIBILIDAD_CONDUCTOR(Integer id_disponibilidad, USUARIO_CONDUCTOR idUsuarioConductor, String dia,
             LocalDateTime horario_inicio, LocalDateTime horario_fin, String asignado, String tipo_servicio) {
         this.id_disponibilidad = id_disponibilidad;
-        this.id_usuario_conductor = id_usuario_conductor;
+        this.idUsuarioConductor = idUsuarioConductor;
         this.dia = dia;
         this.horario_inicio = horario_inicio;
         this.horario_fin = horario_fin;
@@ -42,8 +42,12 @@ public class DISPONIBILIDAD_CONDUCTOR {
         return id_disponibilidad;
     }
 
-    public USUARIO_CONDUCTOR getId_usuario_conductor() {
-        return id_usuario_conductor;
+    public USUARIO_CONDUCTOR getIdUsuarioConductor() {
+        return idUsuarioConductor;
+    }
+
+    public void setIdUsuarioConductor(USUARIO_CONDUCTOR idUsuarioConductor) {
+        this.idUsuarioConductor = idUsuarioConductor;
     }
 
     public String getDia() {
@@ -70,9 +74,7 @@ public class DISPONIBILIDAD_CONDUCTOR {
         this.id_disponibilidad = id_disponibilidad;
     }
 
-    public void setId_usuario_conductor(USUARIO_CONDUCTOR id_usuario_conductor) {
-        this.id_usuario_conductor = id_usuario_conductor;
-    }
+
 
     public void setDia(String dia) {
         this.dia = dia;

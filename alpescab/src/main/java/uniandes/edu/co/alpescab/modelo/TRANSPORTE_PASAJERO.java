@@ -1,35 +1,31 @@
 package uniandes.edu.co.alpescab.modelo;
 
-import jakarta.persistence.EmbeddedId;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="TRANSPORTE_PASAJERO")
-public class TRANSPORTE_PASAJERO {
-    @EmbeddedId
-    private SERVICIO_PK   ID_SERVICIO;
+public class TRANSPORTE_PASAJERO extends SERVICIO {
+
     private Integer PASAJEROS;
-    public TRANSPORTE_PASAJERO(SERVICIO iD_SERVICIO, Integer pASAJEROS) {
-        ID_SERVICIO = new SERVICIO_PK(iD_SERVICIO);
-        PASAJEROS = pASAJEROS;
+
+    public TRANSPORTE_PASAJERO(Integer nivel, String mODALIDAD, Integer dISTANCIA_KM, Integer cOSTO, Float comision, LocalDateTime hORA_INICIO,
+            LocalDateTime hORA_FIN, VEHICULO vEHICULO, USUARIO_SERVICIO cliente, USUARIO_CONDUCTOR conductor, Integer pasajeros) {
+        super(nivel, mODALIDAD, dISTANCIA_KM, cOSTO, comision, hORA_INICIO, hORA_FIN, vEHICULO, cliente, conductor);
+        this.PASAJEROS = pasajeros;
     }
-    public TRANSPORTE_PASAJERO(){;}
-    public SERVICIO_PK getID_SERVICIO() {
-        return ID_SERVICIO;
+
+    public TRANSPORTE_PASAJERO() {
+        super();
     }
-    public void setID_SERVICIO(SERVICIO_PK iD_SERVICIO) {
-        ID_SERVICIO = iD_SERVICIO;
-    }
+
     public Integer getPASAJEROS() {
         return PASAJEROS;
     }
+
     public void setPASAJEROS(Integer pASAJEROS) {
         PASAJEROS = pASAJEROS;
     }
-    
-
-
-    
 }
-
