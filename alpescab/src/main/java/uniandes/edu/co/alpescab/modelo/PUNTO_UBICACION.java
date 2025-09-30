@@ -10,11 +10,14 @@ import jakarta.persistence.Table;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.OneToOne;
 
+import jakarta.persistence.SequenceGenerator;
+
 @Entity
 @Table(name="PUNTO_UBICACION")
 public class PUNTO_UBICACION {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PUNTO_UBICACION_SEQ")
+    @SequenceGenerator(name = "PUNTO_UBICACION_SEQ", sequenceName = "PUNTO_UBICACION_SEQ", allocationSize = 1)
     private Integer  ID_PUNTO;
     private String  DIRECCION_APROX;
     private double LATITUD ;

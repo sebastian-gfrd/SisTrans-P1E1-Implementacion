@@ -6,11 +6,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
+import jakarta.persistence.SequenceGenerator;
+
 @Entity
 @Table(name="CIUDAD")
 public class CIUDAD {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CIUDAD_SEQ")
+    @SequenceGenerator(name = "CIUDAD_SEQ", sequenceName = "CIUDAD_SEQ", allocationSize = 1)
     private Integer   ID_CIUDAD;
     private String NOMBRE;
     private  String DEPARTAMENTO;

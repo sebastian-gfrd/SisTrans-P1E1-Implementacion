@@ -11,11 +11,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import jakarta.persistence.SequenceGenerator;
+
 @Entity
 @Table(name = "RESEÑA")
 public class RESEÑA {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "RESEÑA_SEQ")
+    @SequenceGenerator(name = "RESEÑA_SEQ", sequenceName = "RESEÑA_SEQ", allocationSize = 1)
     private Integer ID_RESEÑA;
 
     @Column(name = "FECHA", columnDefinition = "DATE DEFAULT SYSDATE")

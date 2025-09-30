@@ -7,11 +7,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
+import jakarta.persistence.SequenceGenerator;
+
 @Entity
 @Table(name="DISPONIBILIDAD_CONDUCTOR")
 public class DISPONIBILIDAD_CONDUCTOR {
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "DISPONIBILIDAD_CONDUCTOR_SEQ")
+    @SequenceGenerator(name = "DISPONIBILIDAD_CONDUCTOR_SEQ", sequenceName = "DISPONIBILIDAD_CONDUCTOR_SEQ", allocationSize = 1)
     private Integer id_disponibilidad;
 
     @ManyToOne

@@ -9,12 +9,15 @@ import jakarta.persistence.Inheritance;
 import jakarta.persistence.InheritanceType;
 import jakarta.persistence.Table;
 
+import jakarta.persistence.SequenceGenerator;
+
 @Entity
 @Table(name="PERSONA")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class PERSONA {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PERSONA_SEQ")
+    @SequenceGenerator(name = "PERSONA_SEQ", sequenceName = "PERSONA_SEQ", allocationSize = 1)
     private Integer ID_PERSONA;
 
     @Column(unique = true, nullable = false)

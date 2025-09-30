@@ -12,12 +12,15 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import jakarta.persistence.SequenceGenerator;
+
 @Entity
 @Table(name = "SERVICIO")
 @Inheritance(strategy = InheritanceType.JOINED)
 public abstract class SERVICIO {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "SERVICIO_SEQ")
+    @SequenceGenerator(name = "SERVICIO_SEQ", sequenceName = "SERVICIO_SEQ", allocationSize = 1)
     private Integer ID_SERVICIO;
     private Integer NIVEL;
     private String MODALIDAD;
